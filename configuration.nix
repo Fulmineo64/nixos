@@ -114,15 +114,16 @@
   #  wget
   ];
 
-  systemd.user.services.mountSharedDisk = {
-    description = "Mounts sdb2 on startup";
-    serviceConfig.PassEnvironment = "DISPLAY";
-    script = ''
-      udisksctl mount --block-device=/dev/sdb2
+  # Allows mounting other disks without asking for a password
+  security.polkit = {
+    extraConfig = ''
+      polkit.addRule(function(action, subject) {
+        if ((action.id == "org.freedesktop.udisks2.filesystem-mount-system" || action.id == "org.freedesktop.udisks2.filesystem-mount") && subject.isInGroup("wheel")) {
+          return polkit.Result.YES;
+        }
+      });
     '';
-    wantedBy = [ "multi-user.target" ]; # starts after login
   };
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
