@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    pkgs.php
+    php
   ];
 
   services.nginx = {
