@@ -8,12 +8,13 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-	  ./hardware-nvidia-configuration.nix
-	  ./communication.nix
-	  ./development-base.nix
+      ./hardware-nvidia-configuration.nix
+      ./communication.nix
+      ./development-base.nix
       ./development-flutter.nix
-	  ./entertainment.nix
-	  ./themes.nix
+      ./development-php.nix
+      ./entertainment.nix
+      ./themes.nix
     ];
 
   # Bootloader.
@@ -115,11 +116,11 @@
 
   systemd.user.services.mountSharedDisk = {
     description = "Mounts sdb2 on startup";
-	serviceConfig.PassEnvironment = "DISPLAY";
-	script = ''
-		udisksctl mount --block-device=/dev/sdb2
-	'';
-	wantedBy = [ "multi-user.target" ]; # starts after login
+    serviceConfig.PassEnvironment = "DISPLAY";
+    script = ''
+      udisksctl mount --block-device=/dev/sdb2
+    '';
+    wantedBy = [ "multi-user.target" ]; # starts after login
   };
 
 

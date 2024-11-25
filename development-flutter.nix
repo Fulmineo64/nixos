@@ -34,7 +34,7 @@ in
     flutter
     (android-studio.withSdk androidComposition.androidsdk)
     google-chrome
-	temurin-bin
+	  temurin-bin
   ];
 
   environment.variables = {

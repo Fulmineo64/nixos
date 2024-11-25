@@ -3,6 +3,14 @@
 {
   environment.systemPackages = with pkgs; [
     pkgs.php
-	pkgs.apacheHttpd
   ];
+
+  services.nginx = {
+    enable = true;
+    virtualHosts.localhost = {
+      locations."/" = {
+        root = "/var/www";
+      };
+    };
+  };
 }
