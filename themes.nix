@@ -2,8 +2,8 @@
 
 {
   environment.systemPackages = with pkgs; [
-    andromeda-gtk-theme
-    candy-icons
+    andromeda-gtk-theme # Main theme
+    candy-icons # Icon theme
   ];
 }
 

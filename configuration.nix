@@ -15,6 +15,7 @@
       ./development-php.nix
       ./entertainment.nix
       ./themes.nix
+      ./utilities.nix
     ];
 
   # Bootloader.

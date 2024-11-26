@@ -2,6 +2,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-    monophony
+    monophony # YouTube music player
   ];
 }
