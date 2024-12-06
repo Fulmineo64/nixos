@@ -7,15 +7,16 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./hardware-nvidia-configuration.nix
       ./communication.nix
       ./development-base.nix
       ./development-flutter.nix
       ./development-php.nix
+      ./development-utilities.nix
       ./entertainment.nix
+      ./hardware-configuration.nix
+      ./hardware-dualboot.nix
+      ./hardware-nvidia-configuration.nix
       ./themes.nix
-      ./utilities.nix
     ];
 
   # Bootloader.
@@ -119,7 +120,7 @@
   security.polkit = {
     extraConfig = ''
       polkit.addRule(function(action, subject) {
-        if ((action.id == "org.freedesktop.udisks2.filesystem-mount-system" || action.id == "org.freedesktop.udisks2.filesystem-mount") && subject.isInGroup("wheel")) {
+        if ((action.id == "org.freedesktop.udisks2.filesystem-mount-system" || action.id == "org.freedesktop.udisks2.filesystem-mount" || action.id == "org.freedesktop.udisks2.filesystem-unmount-system" || action.id == "org.freedesktop.udisks2.filesystem-unmount") && subject.isInGroup("wheel")) {
           return polkit.Result.YES;
         }
       });
@@ -151,7 +152,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 
   # nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
